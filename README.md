@@ -196,5 +196,5 @@ This project delivers a rigorous time-series and machine learning study on annua
 
 <p align="center">
   <b>تم إعداد هذا العمل وتوثيقه بأعلى معايير الدقة والشفافية العلمية.</b><br>
-  الباحث / المطور: <b>AlHadaa</b>
+  الباحث / المطور: <b>Eng-Ahmed AL-Masqari</b>
 </p>
