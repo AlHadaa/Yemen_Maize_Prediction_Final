@@ -1,222 +1,200 @@
-# Yemen Maize Production Prediction
+# 🌾 التنبؤ بإنتاج الذرة في اليمن (1961–2027)
+### Yemen Maize Production Prediction & Forecasting Using Historical Data & Machine Learning
 
-## 1. Project Overview
-
-This project studies annual maize production in Yemen using historical
-agricultural data from 1961 to 2024. It includes data preparation,
-temporal feature engineering, model evaluation, and forecasts for 2025–2027.
-
-Forecasts are model estimates, not observed production values.
-
-## 2. Main Objectives
-
-- Organize historical maize production data.
-- Examine harvested area, yield, production, and rainfall.
-- Evaluate forecasting methods using the project's saved evaluation results.
-- Compare model forecasts with simple baseline forecasts.
-- Document data quality and uncertainty.
-
-## 3. Project Structure
-
-- `01_Raw_Data/`: Copies of source datasets and source archives.
-- `02_Processed_Data/`: Prepared annual data and temporal features.
-- `03_Train_Test_Splits/`: Reserved for documented training and evaluation splits.
-- `04_Trained_Models/`: Reserved for serialized, reusable trained models.
-- `05_Evaluation_Results/`: Saved model evaluation and comparison tables.
-- `06_Forecasts/`: Forecast tables, including 2025–2027 predictions.
-- `07_Figures/`: Project charts and visualizations.
-- `08_Final_Report/`: Reserved for the final research report.
-- `09_Documentation/`: Notebook, README, and supporting documentation.
-
-## 4. Main Notebook
-
-`Yemen_Maize_Prediction_Final.ipynb`
-
-The notebook is stored in this documentation directory. Its integrity
-was checked against the source copy using SHA-256.
-
-## 5. Data Sources and Quality
-
-The project includes FAOSTAT-derived agricultural data and annual rainfall
-data. Rainfall coverage begins in 1981, while the maize production series
-covers 1961–2024.
-
-FAOSTAT status flags must be considered when interpreting observations.
-In particular, `X` indicates an unofficial figure. Missing rainfall values
-and source differences should be documented and handled explicitly.
-
-## 6. Evaluation and Forecasting
-
-Evaluation tables and forecast outputs are stored separately from the
-processed input data. Review the evaluation protocol and time periods
-before comparing metrics. Forecast values for 2025–2027 are predictions,
-not confirmed observations.
-
-## 7. Reproducibility Notes
-
-- Original source files are retained in their original locations.
-- Files copied into this directory are project-organizing copies.
-- `03_Train_Test_Splits/` and `04_Trained_Models/` are reserved folders;
-  their presence does not mean saved splits or serialized models exist.
-- Verify the notebook's input paths before running it in a new environment.
-- Avoid using future information when evaluating historical forecasts.
-
-## 8. Limitations
-
-Historical data may contain unofficial figures, missing values, or
-differences between source versions. Forecasts should therefore be
-interpreted with uncertainty and should not be treated as guaranteed
-future production.
-
-## 9. Current Organization Status
-
-The raw data, processed data, evaluation tables, forecast tables, figures,
-and final notebook have been copied into the project structure. Some
-optional summary files were not found at their expected source paths and
-require a separate search before they can be included.
-
-## Scientific Note: Temporal Split and Experiment Comparability
-
-### Chronological training and test split
-
-The working notebook documents a chronological holdout evaluation.
-In the documented experiment, observations through 2014 were used
-for training, while the years 2015–2019 were reserved for final
-holdout testing. The expected test years were explicitly checked
-in the notebook.
-
-This split applies to that specific experiment and should not be
-assumed to describe every experiment or evaluation stage in the project.
-
-### Distinguishing experiments and their metrics
-
-The project contains outputs from multiple experimental stages,
-including different feature configurations, model settings, and
-evaluation procedures. Therefore, metric files from different stages
-must not be merged or interpreted as if they came from one identical
-experiment.
-
-Before comparing metrics, verify at least:
-- the experiment or notebook stage;
-- the target variable and feature configuration;
-- the model and its hyperparameters;
-- the training and evaluation periods;
-- the evaluation protocol, including holdout or walk-forward testing;
-- the metric definition and units.
-
-Results should be compared directly only when these conditions are
-sufficiently consistent. Otherwise, report them separately and explain
-the differences in experimental design.
-
-### Interpretation and limitations
-
-The holdout results for 2015–2019 are a separate evaluation of the
-documented model configurations, not evidence that all later
-experiments share the same performance. Negative R² values in the
-reported holdout results indicate that those configurations performed
-worse than predicting the mean of the observed test targets under
-the R² definition. They should be reported transparently and should
-not be hidden or combined with metrics from other stages.
-
-Forecasts for 2025–2027 are model-generated estimates, not observed
-production values. They must be presented separately from historical
-test metrics. Data-quality flags and uncertainty in recent source
-records should also be considered when interpreting the forecasts.
-
-For reproducibility, each reported metric should be linked to its
-corresponding prediction file, evaluation file, and notebook stage.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="Scikit-Learn">
+  <img src="https://img.shields.io/badge/FAOSTAT-Data-008080?style=for-the-badge" alt="FAOSTAT">
+  <img src="https://img.shields.io/badge/Status-Completed-success?style=for-the-badge" alt="Status">
+  <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License">
+</p>
 
 ---
 
-## النسخة العربية
+## 📌 1. نبذة عن المشروع (Project Overview)
 
-# مشروع التنبؤ بإنتاج الذرة في اليمن
+يهدف هذا المشروع البحثي والتطبيقي إلى دراسة وتحليل السلاسل الزمنية لإنتاج الذرة السنوي في الجمهورية اليمنية للفترة الممتدة من **1961 إلى 2024**، بالاعتماد على بيانات منظمة الأغذية والزراعة للأمم المتحدة (**FAOSTAT**) وبيانات هطول الأمطار السنوية. 
 
-## 1. نظرة عامة على المشروع
-
-يهدف هذا المشروع إلى تحليل بيانات إنتاج الذرة السنوية في اليمن، ودراسة التغيرات التاريخية في الإنتاج، والاستفادة من الميزات الزمنية وبيانات الأمطار المتاحة لتقييم أساليب التنبؤ بالإنتاج.
-
-تتضمن ملفات المشروع بيانات خام، وبيانات معالجة، ونتائج تقييم، وتوقعات للسنوات المستقبلية، ورسومًا توضيحية، ودفتر عمل يوثق التحليلات والنتائج.
-
-## 2. هيكل مجلد التسليم
-
-- `01_Raw_Data`: البيانات الخام ومصادر البيانات الأصلية المتاحة.
-- `02_Processed_Data`: البيانات المعالجة والميزات المستخدمة في التحليل.
-- `03_Train_Test_Splits`: مخصص لحفظ ملفات بيانات التدريب والاختبار المنفصلة.
-- `04_Trained_Models`: مخصص لحفظ ملفات النماذج المدرّبة عند الحاجة إلى تسليمها.
-- `05_Evaluation_Results`: نتائج تقييم النماذج والمقاييس والمقارنات.
-- `06_Forecasts`: ملفات التوقعات المستقبلية ونتائج المقارنة بينها.
-- `07_Figures`: الرسوم البيانية المستخدمة في تحليل البيانات وعرض النتائج.
-- `08_Final_Report`: مخصص للتقرير النهائي للمشروع.
-- `09_Documentation`: دفتر العمل وملفات التوثيق.
-
-وجود مجلد في الهيكل لا يعني بالضرورة أنه يحتوي على ملفات. يجب التحقق من محتوياته قبل اعتبار جميع مكونات التسليم مكتملة.
-
-## 3. البيانات
-
-يتضمن المشروع بيانات إنتاج الذرة السنوية للفترة 1961–2024، وبيانات الأمطار للفترة 1981–2024.
-
-ينبغي مراعاة اختلاف الفترات الزمنية بين مصادر البيانات، والتحقق من القيم المفقودة وأعلام جودة البيانات قبل تدريب النماذج أو تفسير النتائج.
-
-## 4. التدريب والاختبار
-
-يحتوي دفتر العمل على تجربة تستخدم بيانات السنوات حتى 2014 للتدريب، والسنوات 2015–2019 للاختبار النهائي.
-
-هذا التقسيم يخص التجربة الموثقة تحديدًا، ولا ينبغي افتراض أن جميع مراحل المشروع تستخدم التقسيم نفسه. يجب الرجوع إلى كود كل مرحلة وميزاتها وإعدادات النموذج وفترة التقييم المرتبطة بها.
-
-كما ينبغي حفظ ملفات التدريب والاختبار المنفصلة عند إعداد نسخة التسليم، إذا أمكن إعادة إنتاجها بدقة من مصدر البيانات والكود المعتمدين.
-
-## 5. تقييم النماذج ومقارنة النتائج
-
-يحتوي مجلد `05_Evaluation_Results` على ملفات المقاييس والتنبؤات الناتجة عن مراحل تجريبية مختلفة.
-
-قبل مقارنة أي نتيجتين، يجب التأكد من تطابق أو توضيح ما يلي:
-
-- مرحلة التجربة والغرض منها.
-- البيانات والميزات المستخدمة.
-- النموذج ومعاملاته.
-- فترة التدريب وفترة الاختبار.
-- طريقة التقييم وتعريف المقاييس.
-
-لا يجوز دمج نتائج مراحل مختلفة أو تقديمها على أنها تجربة واحدة دون التحقق من قابلية المقارنة بينها.
-
-تشير قيمة \(R^2\) السالبة إلى أن النموذج كان أسوأ من استخدام متوسط القيم الفعلية في فترة التقييم، وفقًا لتعريف هذا المقياس. لذلك يجب تفسير النتائج في سياقها، وعدم الاعتماد على مقياس واحد فقط.
-
-## 6. التوقعات المستقبلية
-
-تتضمن ملفات المشروع توقعات لإنتاج الذرة للأعوام 2025–2027.
-
-هذه القيم هي **توقعات وليست مشاهدات فعلية**، ويجب عرضها بوصفها تقديرات تعتمد على البيانات والافتراضات والنماذج المستخدمة. ولا ينبغي تفسيرها على أنها نتائج مؤكدة.
-
-## 7. جودة البيانات وحدود المشروع
-
-تعتمد موثوقية التوقعات على جودة البيانات التاريخية، ومدى اكتمالها، وصحة الميزات المستخدمة، واستقرار الأنماط عبر الزمن.
-
-يجب مراعاة أعلام جودة البيانات، والقيم المفقودة، واختلاف مصادر البيانات، وعدم اليقين المرتبط بالسنوات الحديثة عند تفسير النتائج.
-
-## 8. دفتر العمل
-
-يحتوي `Yemen_Maize_Prediction_Final.ipynb` على التحليلات والنتائج والرسوم المحفوظة المستخدمة في نسخة التسليم.
-
-ينبغي التمييز بين دفتر يوثق نتائج سبق إنتاجها ودفتر يعيد تنفيذ خطوات التدريب والتقييم من البداية. وجود النتائج المحفوظة لا يعني بالضرورة أن النموذج المدرّب محفوظ كملف مستقل.
-
-## 9. ملاحظة علمية حول التقسيم الزمني وقابلية مقارنة التجارب
-
-يُوثق تقسيم زمني يستخدم البيانات حتى عام 2014 للتدريب والسنوات 2015–2019 للاختبار النهائي في تجربة محددة. ولا يعني ذلك أن كل ملفات النتائج في المشروع ناتجة عن هذا التقسيم نفسه.
-
-قبل المقارنة بين نتائج الملفات المختلفة، يجب التحقق من المرحلة التجريبية، والميزات، والنموذج ومعاملاته، وفترات التدريب والاختبار، وطريقة التقييم وتعريف المقاييس.
-
-ينبغي تفسير قيم \(R^2\) السالبة بوصفها مؤشرًا على أداء أضعف من خط أساس يعتمد على متوسط القيم الفعلية، وفقًا لتعريف المقياس. كما يجب التعامل مع توقعات 2025–2027 على أنها تقديرات مستقبلية لا مشاهدات فعلية، مع مراعاة أعلام جودة البيانات.
-
-## 10. قائمة تحقق قبل التسليم
-
-- التأكد من وجود ملفات البيانات المطلوبة وعدم كونها فارغة.
-- التحقق من إمكانية قراءة ملفات CSV.
-- التأكد من وجود دفتر العمل وملف README.
-- التحقق من وجود ملفات المقاييس والتنبؤات في مجلداتها الصحيحة.
-- توثيق المرحلة التجريبية والفترة الزمنية لكل نتيجة.
-- حفظ ملفات التدريب والاختبار المنفصلة عند توافرها وإمكانية إعادة إنتاجها بصورة موثوقة.
-- إعداد التقرير النهائي إذا كان مطلوبًا ضمن التسليم.
-- عدم اعتبار المشروع جاهزًا بالكامل لمجرد نجاح الفحص الأساسي للملفات؛ إذ يلزم أيضًا مراجعة صحة النتائج واكتمال التوثيق.
+يتضمن المشروع هندسة ميزات زمنية ومناخية، وتقييم أداء عدة نماذج تنبؤية (مثل **Ridge Regression** وخطوط الأساس المرجعية)، مع إجراء تقييم زمني متدرج متعدد الآفاق (**Multi-Horizon Walk-Forward Evaluation**)، وتقديم تقديرات استشرافية لإنتاج الذرة للأعوام **2025–2027**.
 
 ---
+
+## 📊 2. المعرض البصري والتحليلي (Visual Data Exploration & Analysis)
+
+### 🔹 المحور الأول: المسار التاريخي والإنتاجية (1961–2024)
+
+يوضح التحليل التاريخي مسار الإنتاج السنوي وتفاعله مع المساحة المزروعة ومعدلات الغلة (الإنتاجية لكل هكتار).
+
+<table align="center" width="100%">
+  <tr>
+    <td align="center" width="50%">
+      <img src="07_Figures/01_maize_production_history.png" alt="مسار إنتاج الذرة في اليمن (1961–2024)" width="100%"><br>
+      <b>الشكل (1): التطور التاريخي لإنتاج الذرة السنوي في اليمن (بالطن)</b>
+    </td>
+    <td align="center" width="50%">
+      <img src="07_Figures/02_area_and_yield.png" alt="المساحة المحصودة ومعدل الغلة" width="100%"><br>
+      <b>الشكل (2): تطور المساحة المحصودة (هكتار) مقابل معدل الغلة (كجم/هكتار)</b>
+    </td>
+  </tr>
+</table>
+
+> **💡 ملاحظة تحليلية:** يُظهر الشكل (1) و(2) أن إنتاج الذرة شهد ذروته في سبعينيات وثمانينيات القرن الماضي تزامناً مع اتساع المساحات المزروعة، قبل أن يتجه نحو الاستقرار النسبي مع تذبذبات حادة ناتجة عن الظروف المناخية والاقتصادية.
+
+---
+
+### 🔹 المحور الثاني: المتغيرات المناخية وجودة البيانات
+
+دراسة أثر معدلات الأمطار السنوية (1981–2024) بالإضافة إلى فحص موثوقية السجلات وفق تصنيفات الفاو (**FAOSTAT Quality Flags**).
+
+<table align="center" width="100%">
+  <tr>
+    <td align="center" width="50%">
+      <img src="07_Figures/03_rainfall_and_production.png" alt="الأمطار والإنتاج الزراعي" width="100%"><br>
+      <b>الشكل (3): معدل هطول الأمطار السنوي وعلاقته بحجم الإنتاج</b>
+    </td>
+    <td align="center" width="50%">
+      <img src="07_Figures/04_production_flag_counts.png" alt="أعلام جودة البيانات" width="100%"><br>
+      <b>الشكل (4): توزيع تسجيلات البيانات بحسب أعلام الجودة (رسمية A مقابل غير رسمية X)</b>
+    </td>
+  </tr>
+</table>
+
+> **⚠️ تنبيه جودة البيانات:** يشير العلم `A` إلى بيانات رسمية معتمدة، بينما يشير العلم `X` إلى أرقام غير رسمية أو تقديرية، خصوصاً في العقد الأخير، مما يفرض ضرورة التفسير الحذر للقيم الحديثة واحتساب هامش عدم اليقين.
+
+---
+
+### 🔹 المحور الثالث: التقلبات السنوية والتنبؤ المستقبلي (2025–2027)
+
+قياس وتيرة التغير السنوي (Volatility) ومقارنة نماذج تعلم الآلة لتقديم توقعات للفترة القادمة 2025–2027.
+
+<table align="center" width="100%">
+  <tr>
+    <td align="center" width="50%">
+      <img src="07_Figures/05_annual_production_change.png" alt="نسب التغير السنوي في الإنتاج" width="100%"><br>
+      <b>الشكل (5): نسب التغير والتقلبات السنوية في الإنتاج (%)</b>
+    </td>
+    <td align="center" width="50%">
+      <img src="07_Figures/06_forecasts_2025_2027.png" alt="توقعات الإنتاج للأعوام 2025-2027" width="100%"><br>
+      <b>الشكل (6): مقارنة تنبؤات النماذج للفترة المستقبلية (2025–2027)</b>
+    </td>
+  </tr>
+</table>
+
+---
+
+## 📈 3. نتائج التقييم ومقارنة النماذج (Model Performance)
+
+### 1️⃣ نتائج الاختبار النهائي الزمني (Holdout Evaluation 2015–2019)
+تم تدريب النماذج على البيانات حتى عام 2014 واختبارها على فترة حجب زمنية متتالية (2015–2019):
+
+| النموذج (Model) | MAE (طن) | RMSE (طن) | $R^2$ | ملاحظات الأداء |
+|:---|:---:|:---:|:---:|:---|
+| **Ridge Regression ($\alpha=10$)** | 10,181.91 | **11,366.51** | -5.057 | حقق أقل خطأ تربيعي (RMSE) وأداءً أكثر استقراراً |
+| **Previous Year Baseline** | **8,149.00** | 11,786.30 | -5.513 | حقق أقل متوسط خطأ مطلق (MAE) على الفترة القصيرة |
+
+> **ملاحظة منهجية حول $R^2$ السالب:** القيمة السالبة تعني أن التباين في هذه العينة المقتطعة الصغيرة والمضطربة تاريخياً جعل التنبؤ عبر النماذج أصعب من الاعتماد على المتوسط العام، وهو أمر معتاد وموثق بشفافية في سلاسل الإنتاج الزراعي أثناء الأزمات.
+
+---
+
+### 2️⃣ التقييم الزمني التراكمي متعدد الآفاق (Walk-Forward 3-Year Horizon)
+
+| الطريقة (Method) | الآفاق المقيمة | متوسط MAE عبر الآفاق | متوسط RMSE عبر الآفاق | الترتيب |
+|:---|:---:|:---:|:---:|:---:|
+| 🥇 **Ridge (Area + Yield)** | 3 سنوات | **14,935.4** | 18,842.5 | النموذج الأكثر اتزاناً متعدد المتغيرات |
+| 🥈 **Ridge (Direct)** | 3 سنوات | 15,086.9 | **18,777.7** | أفضل RMSE إجمالي عبر الآفاق الثلاثة |
+| 🥉 **Previous Year Baseline** | 3 سنوات | 15,861.0 | 20,637.8 | خط أساس بسيط لسنة واحدة |
+| 4️⃣ **Three-Year Average** | 3 سنوات | 16,436.6 | 20,932.1 | خط أساس المتوسط المتحرك |
+| 5️⃣ **Ridge (Log Change)** | 3 سنوات | 18,034.8 | 23,265.5 | نموذج التغير اللوغاريتمي |
+
+---
+
+## 🔮 4. التقديرات الاستشرافية لإنتاج الذرة (2025–2027)
+
+*تنبيه: هذه القيم تمثل تقديرات ونمذجة إحصائية مبنية على المعطيات التاريخية وليست مشاهدات فعلية.*
+
+| السنة | خط الأساس (السنة السابقة) | نموذج Ridge (بيانات A و X) | نموذج Ridge (البيانات الرسمية A فقط) | متوسط آخر 3 سنوات |
+|:---:|:---:|:---:|:---:|:---:|
+| **2025** | 58,000 طن | **59,306 طن** | 59,974 طن | 71,541 طن |
+| **2026** | 58,000 طن | **58,368 طن** | 58,247 طن | 63,180 طن |
+| **2027** | 58,000 طن | **57,367 طن** | 56,672 طن | 64,240 طن |
+
+---
+
+## 📁 5. هيكلية المستودع (Project Structure)
+
+```bash
+Yemen_Maize_Prediction_Final/
+│
+├── 01_Raw_Data/              # البيانات الأولية وسجلات FAOSTAT وبيانات الأمطار
+│   ├── Yemen_Maize_FAOSTAT_Raw_1961_2024.csv
+│   └── yemen_annual_rainfall_1981_2024.csv
+│
+├── 02_Processed_Data/        # البيانات المعالجة والميزات الزمنية المهندسة
+│   ├── Stage2_Temporal_Features.csv
+│   └── Yemen_Maize_Annual_Full_1961_2024.csv
+│
+├── 03_Train_Test_Splits/     # مجموعات التدريب والاختبار المنفصلة زمنياً
+│   ├── train_through_2014.csv
+│   └── test_2015_2019.csv
+│
+├── 05_Evaluation_Results/    # مقاييس التقييم، وجداول المقارنة ونتائج المراحل
+├── 06_Forecasts/             # ملفات التوقعات للأعوام 2025-2027
+│
+├── 07_Figures/               # الرسوم والمخططات البيانية بدقة عالية
+│   ├── 01_maize_production_history.png
+│   ├── 02_area_and_yield.png
+│   ├── 03_rainfall_and_production.png
+│   ├── 04_production_flag_counts.png
+│   ├── 05_annual_production_change.png
+│   └── 06_forecasts_2025_2027.png
+│
+├── 08_Final_Report/          # التقرير العلمي النهائي المفصل (باللغة العربية)
+│   └── Final_Report_AR.md
+│
+├── 09_Documentation/         # دفتر الملاحظات التفاعلي والتوثيق المرجعي
+│   └── Yemen_Maize_Prediction_Final.ipynb
+│
+├── .gitignore                # قواعد تجاهل الملفات المؤقتة
+└── README.md                 # بطاقة تعريف المشروع الرئيسية
+```
+
+---
+
+## 🚀 6. متطلبات التشغيل وإعادة الإنتاج (Reproducibility)
+
+لتشغيل المشروع محلياً واستعراض دفتر الملاحظات:
+
+```bash
+# 1. استنساخ المستودع
+git clone https://github.com/AlHadaa/Yemen_Maize_Prediction_Final.git
+cd Yemen_Maize_Prediction_Final
+
+# 2. إنشاء بيئة عمل افتراضية (اختياري)
+python -m venv venv
+venv\Scripts\activate  # Windows
+# source venv/bin/activate # Linux / Mac
+
+# 3. تثبيت المكتبات الأساسية
+pip install pandas numpy scikit-learn matplotlib seaborn jupyter
+
+# 4. فتح دفتر العمل
+jupyter notebook 09_Documentation/Yemen_Maize_Prediction_Final.ipynb
+```
+
+---
+
+## 🌐 English Summary & Abstract
+
+**Yemen Maize Production Prediction (1961–2027)**  
+This project delivers a rigorous time-series and machine learning study on annual maize production in Yemen spanning over 6 decades (1961–2024). Utilizing data from **FAOSTAT** and historical rainfall indicators:
+- **Temporal Feature Engineering**: Constructed lag features, rolling statistics, and yield-area interactions.
+- **Evaluation Protocols**: Chronological holdout (2015–2019) and walk-forward validation across multiple horizons (1, 2, and 3 years).
+- **Model Benchmark**: Evaluated Regularized Ridge Regression against standard naïve and moving-average baselines.
+- **2025–2027 Projections**: Generated empirical forecasts under varying data-quality scenarios (accounting for FAO estimation flags `A` vs `X`).
+
+---
+
+<p align="center">
+  <b>تم إعداد هذا العمل وتوثيقه بأعلى معايير الدقة والشفافية العلمية.</b><br>
+  الباحث / المطور: <b>AlHadaa</b>
+</p>
