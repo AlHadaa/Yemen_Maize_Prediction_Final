@@ -1,0 +1,13 @@
+Model,Forecast_Year,Prediction_tonnes,External_2025_Estimate_tonnes,Training_Records,Training_End_Year,Forecast_Type
+Previous_Year,2025,58000.0,57000.0,64,2024,Recursive; future actuals unavailable
+Previous_Year,2026,58000.0,,64,2024,Recursive; future actuals unavailable
+Previous_Year,2027,58000.0,,64,2024,Recursive; future actuals unavailable
+Three_Year_Average,2025,71541.0,57000.0,64,2024,Recursive; future actuals unavailable
+Three_Year_Average,2026,63180.333333333336,,64,2024,Recursive; future actuals unavailable
+Three_Year_Average,2027,64240.444444444445,,64,2024,Recursive; future actuals unavailable
+Ridge_A_only,2025,59575.74739676283,57000.0,40,2019,Recursive; future actuals unavailable
+Ridge_A_only,2026,57415.903547905575,,40,2019,Recursive; future actuals unavailable
+Ridge_A_only,2027,56273.56245554352,,40,2019,Recursive; future actuals unavailable
+Ridge_A_and_X,2025,59265.12313585356,57000.0,60,2024,Recursive; future actuals unavailable
+Ridge_A_and_X,2026,57826.47316454991,,60,2024,Recursive; future actuals unavailable
+Ridge_A_and_X,2027,56974.912473239434,,60,2024,Recursive; future actuals unavailable

@@ -1,0 +1,13 @@
+Model,Year,Prediction,Training_Records,Training_End_Year
+Previous_Year,2025,58000.0,,
+Ridge_A_and_X_alpha_10,2025,59306.22810710517,60.0,2024.0
+Ridge_A_only_alpha_10,2025,59974.434998164674,40.0,2019.0
+Three_Year_Average,2025,71541.0,,
+Previous_Year,2026,58000.0,,
+Ridge_A_and_X_alpha_10,2026,58367.77406593555,60.0,2024.0
+Ridge_A_only_alpha_10,2026,58247.07156878344,40.0,2019.0
+Three_Year_Average,2026,63180.333333333336,,
+Previous_Year,2027,58000.0,,
+Ridge_A_and_X_alpha_10,2027,57366.48738716914,60.0,2024.0
+Ridge_A_only_alpha_10,2027,56672.060617391035,40.0,2019.0
+Three_Year_Average,2027,64240.444444444445,,

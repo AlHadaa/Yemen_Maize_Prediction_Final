@@ -1,0 +1,52 @@
+{
+  "source_file": "/content/drive/MyDrive/Yemen_Maize_Prediction/Yemen_Maize_Prediction_Final/02_Processed_Data/Stage2_Temporal_Features.csv",
+  "experiment": "Documented temporal holdout",
+  "filter": {
+    "Production_Flag": "A",
+    "Production_Lag_1": "not null",
+    "Year_minus_Previous_Year": 1
+  },
+  "training_period": {
+    "condition": "Year <= 2014",
+    "rows": 35,
+    "min_year": 1970,
+    "max_year": 2014,
+    "file": "train_through_2014.csv"
+  },
+  "test_period": {
+    "condition": "2015 <= Year <= 2019",
+    "rows": 5,
+    "years": [
+      2015,
+      2016,
+      2017,
+      2018,
+      2019
+    ],
+    "file": "test_2015_2019.csv"
+  },
+  "columns": [
+    "Year",
+    "Area_Harvested",
+    "Production",
+    "Yield",
+    "Production_Unit",
+    "Production_Flag",
+    "Production_Note",
+    "Area_Unit",
+    "Area_Flag",
+    "Area_Note",
+    "Yield_Unit",
+    "Yield_Flag",
+    "Yield_Note",
+    "Rainfall_mm",
+    "Image_Count",
+    "Previous_Year",
+    "Production_Lag_1",
+    "Production_Lag_2",
+    "Production_Lag_3",
+    "Production_Rolling_Mean_3",
+    "Rainfall_Lag_1"
+  ],
+  "note": "These files document one specific experiment. They must not be assumed to represent every project stage."
+}
